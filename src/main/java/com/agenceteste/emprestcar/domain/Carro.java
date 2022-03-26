@@ -18,16 +18,16 @@ public class Carro {
 	private Integer id;
 	private String modelo;
 	private String marca;
-	private LocalDate data;
+	private LocalDate dataFabricacao;
 	
 	@OneToMany(mappedBy = "carro")
 	private List<Viagem> viagens = new ArrayList<>();
 	
-	public Carro(Integer id, String modelo, String marca, LocalDate data) {
+	public Carro(Integer id, String modelo, String marca, LocalDate dataFabricacao) {
 		this.id = id;
 		this.modelo = modelo;
 		this.marca = marca;
-		this.data = data;
+		this.dataFabricacao = dataFabricacao;
 	}
 
 	public Integer getId() {
@@ -43,7 +43,7 @@ public class Carro {
 	}
 
 	public LocalDate getData() {
-		return data;
+		return dataFabricacao;
 	}
 
 	public List<Viagem> getViagens() {

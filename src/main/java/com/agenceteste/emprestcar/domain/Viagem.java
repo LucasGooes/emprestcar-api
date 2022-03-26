@@ -26,13 +26,14 @@ public class Viagem {
 	@JoinColumn
 	private Carro carro;
 	
-	public Viagem(Integer id, LocalDate dataRetirada, LocalDate dataEntrega, Funcionario funcionario, Carro carro) {
+	public Viagem(Integer id, LocalDate dataEntrega, Funcionario funcionario, Carro carro) {
 		this.id = id;
 		this.dataRetirada = LocalDate.now();
-		this.dataEntrega = null;
+		this.dataEntrega = dataEntrega;
 		this.funcionario = funcionario;
 		this.carro = carro;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
