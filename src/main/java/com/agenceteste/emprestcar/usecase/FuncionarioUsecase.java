@@ -17,5 +17,9 @@ public class FuncionarioUsecase {
 	public List<Funcionario> listarTodos() {
 		return repo.findAll();
 	}
+	
+	public void inserir(Funcionario funcionario) {
+		repo.save(funcionario);
+	}
 
 }

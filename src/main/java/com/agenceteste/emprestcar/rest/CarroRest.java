@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,12 @@ public class CarroRest {
 	public ResponseEntity<List<Carro>> listarTodos() {
 		List<Carro> carros = carroUsecase.listarTodos();
 		return ResponseEntity.ok().body(carros);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> inserir(@RequestBody Carro novo) {
+		carroUsecase.inserir(novo);
+		return ResponseEntity.ok().build();
 	}
 
 }

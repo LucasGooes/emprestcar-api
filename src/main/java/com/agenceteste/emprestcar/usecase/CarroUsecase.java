@@ -17,4 +17,9 @@ public class CarroUsecase {
 	public List<Carro> listarTodos() {
 		return repo.findAll(); 
 	}
+	
+	public void inserir(Carro carro) {
+		repo.save(carro);
+	}
+	
 }
