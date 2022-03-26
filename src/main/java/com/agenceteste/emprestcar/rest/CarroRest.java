@@ -2,6 +2,8 @@ package com.agenceteste.emprestcar.rest;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agenceteste.emprestcar.domain.Carro;
+import com.agenceteste.emprestcar.dto.CarroDTO;
 import com.agenceteste.emprestcar.usecase.CarroUsecase;
 
 @RestController
@@ -26,8 +29,9 @@ public class CarroRest {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Carro novo) {
-		carroUsecase.inserir(novo);
+	public ResponseEntity<Void> inserir(@RequestBody @Valid CarroDTO novo) {
+		Carro carro = novo.toCarro();
+		carroUsecase.inserir(carro);
 		return ResponseEntity.ok().build();
 	}
 
