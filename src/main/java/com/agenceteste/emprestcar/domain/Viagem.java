@@ -26,6 +26,9 @@ public class Viagem {
 	@JoinColumn
 	private Carro carro;
 	
+	protected Viagem() {
+	}
+	
 	public Viagem(Integer id, LocalDate dataEntrega, Funcionario funcionario, Carro carro) {
 		this.id = id;
 		this.dataRetirada = LocalDate.now();

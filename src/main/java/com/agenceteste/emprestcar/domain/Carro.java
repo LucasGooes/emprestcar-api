@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Carro {
 	
@@ -22,6 +24,9 @@ public class Carro {
 	
 	@OneToMany(mappedBy = "carro")
 	private List<Viagem> viagens = new ArrayList<>();
+	
+	protected Carro() {
+	}
 	
 	public Carro(Integer id, String modelo, String marca, LocalDate dataFabricacao) {
 		this.id = id;
@@ -45,7 +50,8 @@ public class Carro {
 	public LocalDate getData() {
 		return dataFabricacao;
 	}
-
+	
+	@JsonIgnore
 	public List<Viagem> getViagens() {
 		return viagens;
 	}

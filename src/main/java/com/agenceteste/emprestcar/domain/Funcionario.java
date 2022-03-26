@@ -21,6 +21,9 @@ public class Funcionario {
 	@OneToMany(mappedBy = "carro")
 	private List<Viagem> viagens = new ArrayList<>();
 	
+	protected Funcionario() {
+	}
+	
 	public Funcionario(Integer id, String nome, Integer matricula) {
 		this.id = id;
 		this.nome = nome;
