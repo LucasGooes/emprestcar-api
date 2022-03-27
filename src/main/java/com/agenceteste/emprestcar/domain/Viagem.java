@@ -17,6 +17,7 @@ public class Viagem {
 	private Integer id;
 	private LocalDate dataRetirada;
 	private LocalDate dataEntrega;
+	private Integer status;
 	
 	@ManyToOne
 	@JoinColumn
@@ -35,6 +36,7 @@ public class Viagem {
 		this.dataEntrega = null;
 		this.funcionario = funcionario;
 		this.carro = carro;
+		this.status = StatusViagem.EM_CURSO.getCod();
 	}
 	
 	public Integer getId() {
@@ -52,8 +54,16 @@ public class Viagem {
 	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
-	
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
+
+	public StatusViagem getStatus() {
+		return StatusViagem.toEnum(status);
+	}
+
+	public void setStatus(StatusViagem status) {
+		this.status = status.getCod();
+	}
+	
 }

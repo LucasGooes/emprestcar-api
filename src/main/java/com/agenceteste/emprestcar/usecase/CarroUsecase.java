@@ -44,8 +44,8 @@ public class CarroUsecase {
 		return repo.findByStatus(StatusCarro.EM_USO.getCod());
 	}
 
-	public void carroEmUso(Carro carro) {
-		carro.setStatus(StatusCarro.EM_USO);
+	public void atualizarStatus(Carro carro, StatusCarro status) {
+		carro.setStatus(status);
 		repo.save(carro);
 	}
 }
