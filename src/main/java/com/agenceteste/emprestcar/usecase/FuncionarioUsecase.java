@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.agenceteste.emprestcar.domain.Funcionario;
 import com.agenceteste.emprestcar.repository.FuncionarioRepository;
+import com.agenceteste.emprestcar.usecase.exceptions.DataIntegrityException;
 import com.agenceteste.emprestcar.usecase.exceptions.ObjectNotFoundException;
 
 @Service
@@ -20,7 +21,7 @@ public class FuncionarioUsecase {
 	public Funcionario buscarPorId(Integer id) {
 		Optional<Funcionario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"OBJETO NÃO ENCONTRADO! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
+				"Funcionario não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
 	}
 	
 	public List<Funcionario> listarTodos() {
@@ -35,7 +36,7 @@ public class FuncionarioUsecase {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("NÃO É POSSÍVEL EXCLUIR FUNCIONARIO QUE TENHA EMPRESTIMOS RELACIONADOS!");
+			throw new DataIntegrityException("Não é possível excluir um funcionário que tenha emptrestimos relacionados!");
 		}
 	}
 

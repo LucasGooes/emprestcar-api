@@ -47,6 +47,4 @@ public class CarroRest {
 		carroUsecase.deletar(id);
 		return ResponseEntity.noContent().build();
 	}
-	
-
 }

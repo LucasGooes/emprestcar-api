@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.agenceteste.emprestcar.domain.Carro;
 import com.agenceteste.emprestcar.domain.StatusCarro;
 import com.agenceteste.emprestcar.repository.CarroRepository;
+import com.agenceteste.emprestcar.usecase.exceptions.DataIntegrityException;
 import com.agenceteste.emprestcar.usecase.exceptions.ObjectNotFoundException;
 
 @Service
@@ -21,7 +22,7 @@ public class CarroUsecase {
 	public Carro buscarPorId(Integer id) {
 		Optional<Carro> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"OBJETO NÃO ENCONTRADO! Id: " + id + ", Tipo: " + Carro.class.getName()));
+				"Carro não encontrado! Id: " + id + ", Tipo: " + Carro.class.getName()));
 	}
 
 	public List<Carro> listarTodos() {
@@ -36,7 +37,7 @@ public class CarroUsecase {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("NÃO É POSSÍVEL EXCLUIR CARROS QUE TENHAM EMPRESTIMOS RELACIONADOS!");
+			throw new DataIntegrityException("Não é possível excluir carros que tenham pedidos relacionados!");
 		}
 	}
 	

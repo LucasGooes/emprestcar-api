@@ -12,6 +12,7 @@ import com.agenceteste.emprestcar.domain.StatusCarro;
 import com.agenceteste.emprestcar.domain.StatusViagem;
 import com.agenceteste.emprestcar.domain.Viagem;
 import com.agenceteste.emprestcar.repository.ViagemRepository;
+import com.agenceteste.emprestcar.usecase.exceptions.BusinessException;
 
 @Service
 public class ViagemUsecase {
@@ -35,8 +36,7 @@ public class ViagemUsecase {
 	public void realizarRetirada(Integer idFuncionario, Integer idCarro) {
 		Carro carro = carroUsecase.buscarPorId(idCarro);
 		if (!carro.getStatus().equals(StatusCarro.LIBERADO)) {
-			// VERIFICAR COMO SE PODE MELHORAR ESSA EXCEÇÃO
-			throw new RuntimeException("CARRO NÃO ESTA LIBERADO PARA USO");
+			throw new BusinessException("Este carro não esta liberado para uso! Id: "+idCarro);
 		}
 		Funcionario funcionario = funcUsecase.buscarPorId(idFuncionario);
 		Viagem viagem = new Viagem(null, funcionario, carro);
@@ -47,7 +47,7 @@ public class ViagemUsecase {
 	public void realizarDevolucao(Integer idFuncionario, Integer idCarro) {
 		Viagem viagem = viagemRepository.buscarViagemEspecifica(StatusViagem.EM_CURSO.getCod(), idFuncionario, idCarro);
 		if(viagem == null) {
-			throw new RuntimeException("NÃO FOI ENCONTRADA UMA VIAGEM COM OS DETERMINADOS PARAMETROS");
+			throw new BusinessException("Não foi encontrada uma viagem cos os determinados parâmetros!");
 		}
 		viagem.setDataEntrega(LocalDate.now());
 		viagem.setStatus(StatusViagem.CONCLUIDA);
