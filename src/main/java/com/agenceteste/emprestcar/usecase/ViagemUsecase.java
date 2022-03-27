@@ -1,6 +1,7 @@
 package com.agenceteste.emprestcar.usecase;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,13 @@ public class ViagemUsecase {
 
 	@Autowired
 	private FuncionarioUsecase funcUsecase;
+	
+	public List<Viagem> listarViagensConcluidasEm(Integer mes, Integer ano) {
+		LocalDate dataInicial = LocalDate.of(ano, mes, 1);
+		LocalDate dataFinal = LocalDate.of(ano, mes, dataInicial.lengthOfMonth());
+		List<Viagem> viagens = viagemRepository.listarViagensComDataRetiradaEntre(dataInicial, dataFinal);
+		return viagens;
+	}
 
 	public void realizarRetirada(Integer idFuncionario, Integer idCarro) {
 		Carro carro = carroUsecase.buscarPorId(idCarro);
