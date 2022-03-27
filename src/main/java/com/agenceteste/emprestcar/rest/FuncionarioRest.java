@@ -2,6 +2,8 @@ package com.agenceteste.emprestcar.rest;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agenceteste.emprestcar.domain.Funcionario;
+import com.agenceteste.emprestcar.dto.FuncionarioDTO;
 import com.agenceteste.emprestcar.usecase.FuncionarioUsecase;
 
 @RestController
@@ -26,8 +29,9 @@ public class FuncionarioRest {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Funcionario novo) {
-		funcionarioUsecase.inserir(novo);
+	public ResponseEntity<Void> inserir(@RequestBody @Valid FuncionarioDTO novo) {
+		Funcionario funcionario = novo.toFuncionario();
+		funcionarioUsecase.inserir(funcionario);
 		return ResponseEntity.ok().build();
 	}
 	

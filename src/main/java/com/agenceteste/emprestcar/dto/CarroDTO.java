@@ -12,10 +12,8 @@ import com.agenceteste.emprestcar.domain.Carro;
 public class CarroDTO {
 	
 	private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	//@Length(min = 1, max = 240, message = "O Campo modelo deve ser preenchido")
 	@NotEmpty
 	private String modelo;
-	//@Length(min = 1, max = 240, message = "O Campo marca deve ser preenchido")
 	@NotEmpty
 	private String marca;
 	@NotNull
