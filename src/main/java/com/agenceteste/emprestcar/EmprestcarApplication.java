@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.agenceteste.emprestcar.domain.Carro;
 import com.agenceteste.emprestcar.domain.Funcionario;
+import com.agenceteste.emprestcar.domain.StatusCarro;
 import com.agenceteste.emprestcar.domain.Viagem;
 import com.agenceteste.emprestcar.repository.CarroRepository;
 import com.agenceteste.emprestcar.repository.FuncionarioRepository;
@@ -47,7 +48,9 @@ public class EmprestcarApplication implements CommandLineRunner {
 		Funcionario func5 = new Funcionario(null, "João", 005);
 
 		Viagem viagem = new Viagem(null, LocalDate.parse("29/03/2022", formato), func, carro);
+		carro.setStatus(StatusCarro.EM_USO);
 		Viagem viagem2 = new Viagem(null, LocalDate.parse("02/04/2022", formato), func2, carro2);
+		carro2.setStatus(StatusCarro.EM_USO);
 		
 		carroRepository.saveAll(Arrays.asList(carro, carro2, carro3));
 		funcionarioRepository.saveAll(Arrays.asList(func, func2, func3, func4, func5));		

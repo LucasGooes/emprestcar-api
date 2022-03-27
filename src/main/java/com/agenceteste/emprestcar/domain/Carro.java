@@ -21,6 +21,7 @@ public class Carro {
 	private String modelo;
 	private String marca;
 	private LocalDate dataFabricacao;
+	private Integer status;
 	
 	@OneToMany(mappedBy = "carro")
 	private List<Viagem> viagens = new ArrayList<>();
@@ -33,6 +34,7 @@ public class Carro {
 		this.modelo = modelo;
 		this.marca = marca;
 		this.dataFabricacao = dataFabricacao;
+		this.status = StatusCarro.LIBERADO.getCod();
 	}
 
 	public Integer getId() {
@@ -51,6 +53,14 @@ public class Carro {
 		return dataFabricacao;
 	}
 	
+	public StatusCarro getStatus() {
+		return StatusCarro.toEnum(status);
+	}
+
+	public void setStatus(StatusCarro status) {
+		this.status = status.getCod();
+	}
+
 	@JsonIgnore
 	public List<Viagem> getViagens() {
 		return viagens;

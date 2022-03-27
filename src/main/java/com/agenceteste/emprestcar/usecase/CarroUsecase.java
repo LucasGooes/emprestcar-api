@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.agenceteste.emprestcar.domain.Carro;
+import com.agenceteste.emprestcar.domain.StatusCarro;
 import com.agenceteste.emprestcar.repository.CarroRepository;
 
 @Service
@@ -29,6 +30,10 @@ public class CarroUsecase {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException("NÃO É POSSÍVEL EXCLUIR CARROS QUE TENHAM EMPRESTIMOS RELACIONADOS!");
 		}
+	}
+	
+	public List<Carro> listarCarrosEmUso() {
+		return repo.findByStatus(StatusCarro.EM_USO.getCod());
 	}
 
 	

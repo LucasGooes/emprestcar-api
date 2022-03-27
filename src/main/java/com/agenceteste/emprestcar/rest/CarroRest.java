@@ -29,6 +29,12 @@ public class CarroRest {
 		return ResponseEntity.ok().body(carros);
 	}
 	
+	@RequestMapping( value="/retirados", method = RequestMethod.GET)
+	public ResponseEntity<List<Carro>> listarCarrosEmUso() {
+		List<Carro> carros = carroUsecase.listarCarrosEmUso();
+		return ResponseEntity.ok().body(carros);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody @Valid CarroDTO novo) {
 		Carro carro = novo.toCarro();
