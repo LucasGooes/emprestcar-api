@@ -3,6 +3,7 @@ package com.agenceteste.emprestcar.usecase;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.agenceteste.emprestcar.domain.Funcionario;
@@ -20,6 +21,14 @@ public class FuncionarioUsecase {
 	
 	public void inserir(Funcionario funcionario) {
 		repo.save(funcionario);
+	}
+	
+	public void deletar(Integer id) {
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("NÃO É POSSÍVEL EXCLUIR FUNCIONARIO QUE TENHA EMPRESTIMOS RELACIONADOS!");
+		}
 	}
 
 }

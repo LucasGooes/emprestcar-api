@@ -3,6 +3,7 @@ package com.agenceteste.emprestcar.usecase;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.agenceteste.emprestcar.domain.Carro;
@@ -21,5 +22,14 @@ public class CarroUsecase {
 	public void inserir(Carro carro) {
 		repo.save(carro);
 	}
+	
+	public void deletar(Integer id) {
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("NÃO É POSSÍVEL EXCLUIR CARROS QUE TENHAM EMPRESTIMOS RELACIONADOS!");
+		}
+	}
+
 	
 }
