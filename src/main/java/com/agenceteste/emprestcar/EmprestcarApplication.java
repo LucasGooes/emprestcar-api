@@ -47,9 +47,9 @@ public class EmprestcarApplication implements CommandLineRunner {
 		Funcionario func4 = new Funcionario(null, "Lucas", 004);
 		Funcionario func5 = new Funcionario(null, "João", 005);
 
-		Viagem viagem = new Viagem(null, LocalDate.parse("29/03/2022", formato), func, carro);
+		Viagem viagem = new Viagem(null, func, carro);
 		carro.setStatus(StatusCarro.EM_USO);
-		Viagem viagem2 = new Viagem(null, LocalDate.parse("02/04/2022", formato), func2, carro2);
+		Viagem viagem2 = new Viagem(null, func2, carro2);
 		carro2.setStatus(StatusCarro.EM_USO);
 		
 		carroRepository.saveAll(Arrays.asList(carro, carro2, carro3));

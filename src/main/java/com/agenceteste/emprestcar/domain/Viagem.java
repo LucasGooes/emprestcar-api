@@ -29,10 +29,10 @@ public class Viagem {
 	protected Viagem() {
 	}
 	
-	public Viagem(Integer id, LocalDate dataEntrega, Funcionario funcionario, Carro carro) {
+	public Viagem(Integer id, Funcionario funcionario, Carro carro) {
 		this.id = id;
 		this.dataRetirada = LocalDate.now();
-		this.dataEntrega = dataEntrega;
+		this.dataEntrega = null;
 		this.funcionario = funcionario;
 		this.carro = carro;
 	}
@@ -52,8 +52,8 @@ public class Viagem {
 	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
+	
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
-
 }
