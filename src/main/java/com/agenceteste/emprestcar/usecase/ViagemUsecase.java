@@ -33,15 +33,16 @@ public class ViagemUsecase {
 		return viagens;
 	}
 
-	public void realizarRetirada(Integer idFuncionario, Integer idCarro) {
+	public Viagem realizarRetirada(Integer idFuncionario, Integer idCarro) {
 		Carro carro = carroUsecase.buscarPorId(idCarro);
 		if (!carro.getStatus().equals(StatusCarro.LIBERADO)) {
 			throw new BusinessException("Este carro não esta liberado para uso! Id: "+idCarro);
 		}
 		Funcionario funcionario = funcUsecase.buscarPorId(idFuncionario);
 		Viagem viagem = new Viagem(null, funcionario, carro);
-		viagemRepository.save(viagem);
+		Viagem obj = viagemRepository.save(viagem);
 		carroUsecase.atualizarStatus(carro, StatusCarro.EM_USO);
+		return obj;
 	}
 
 	public void realizarDevolucao(Integer idFuncionario, Integer idCarro) {

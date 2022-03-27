@@ -1,5 +1,6 @@
 package com.agenceteste.emprestcar.rest;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.agenceteste.emprestcar.domain.Carro;
 import com.agenceteste.emprestcar.dto.CarroDTO;
@@ -38,8 +40,9 @@ public class CarroRest {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody @Valid CarroDTO novo) {
 		Carro carro = novo.toCarro();
-		carroUsecase.inserir(carro);
-		return ResponseEntity.ok().build();
+		Carro obj = carroUsecase.inserir(carro);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)

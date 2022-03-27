@@ -29,15 +29,16 @@ public class CarroUsecase {
 		return repo.findAll(); 
 	}
 	
-	public void inserir(Carro carro) {
-		repo.save(carro);
+	public Carro inserir(Carro carro) {
+		Carro obj = repo.save(carro);
+		return obj;
 	}
 	
 	public void deletar(Integer id) {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir carros que tenham pedidos relacionados!");
+			throw new DataIntegrityException("Não é possível excluir carros que tenham emprestimos relacionados!");
 		}
 	}
 	

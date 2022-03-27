@@ -21,22 +21,23 @@ public class FuncionarioUsecase {
 	public Funcionario buscarPorId(Integer id) {
 		Optional<Funcionario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Funcionario não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
+				"Funcionário não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));
 	}
 	
 	public List<Funcionario> listarTodos() {
 		return repo.findAll();
 	}
 	
-	public void inserir(Funcionario funcionario) {
-		repo.save(funcionario);
+	public Funcionario inserir(Funcionario funcionario) {
+		Funcionario obj = repo.save(funcionario);
+		return obj;
 	}
 	
 	public void deletar(Integer id) {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um funcionário que tenha emptrestimos relacionados!");
+			throw new DataIntegrityException("Não é possível excluir funcionários que tenham emprestimos relacionados!");
 		}
 	}
 
