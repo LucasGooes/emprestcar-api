@@ -61,13 +61,12 @@ public class EmprestcarApplication implements CommandLineRunner {
 		Viagem viagem2 = new Viagem(null, func2, carro2);
 		carro2.setStatus(StatusCarro.EM_USO);
 		
-		User user = new User("lucas", pe.encode("123"));
-		User user2 = new User("maria", pe.encode("456"));
+		User user = new User("admin", pe.encode("fleetmg@!"));
 		
 		carroRepository.saveAll(Arrays.asList(carro, carro2, carro3));
 		funcionarioRepository.saveAll(Arrays.asList(func, func2, func3, func4, func5));		
 		viagemRepository.saveAll(Arrays.asList(viagem, viagem2));
-		userRepository.saveAll(Arrays.asList(user, user2));
+		userRepository.saveAll(Arrays.asList(user));
 	}
 
 }

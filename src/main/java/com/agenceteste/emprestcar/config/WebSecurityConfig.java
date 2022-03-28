@@ -36,7 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		.anyRequest().authenticated();
-		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		JWTAuthenticationFilter jwtAuthenticationFilter =  new JWTAuthenticationFilter(authenticationManager(), jwtUtil);
+		jwtAuthenticationFilter.setFilterProcessesUrl("/api/v1/auth");
+		http.addFilter(jwtAuthenticationFilter);
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

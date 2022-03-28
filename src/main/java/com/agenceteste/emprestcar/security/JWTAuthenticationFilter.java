@@ -25,6 +25,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	private JWTUtil jwtUtil;
 	
+	public JWTAuthenticationFilter() {
+	}
+	
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
 		super.setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
 		this.authenticationManager = authenticationManager;
@@ -50,8 +53,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException {
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
-        res.addHeader("Authorization", "Bearer " + token);
-        res.addHeader("access-control-expose-headers", "Authorization");
+        res.getWriter().append(jsonSuccessful(token));
+        res.setContentType("application/json");
+	}
+	
+	private String jsonSuccessful(String token) {
+		long date = new Date().getTime();
+		return "{\"timestamp\": " + date + ", "
+        + "\"status\": 200, "
+        + "\"message\": \"login realizado com sucesso!\", "
+        + "\"accessToken\": \""+token+"\"}";
 	}
 	
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
@@ -69,7 +80,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return "{\"timestamp\": " + date + ", "
                 + "\"status\": 401, "
                 + "\"error\": \"Não autorizado\", "
-                + "\"message\": \"Email ou senha inválidos\", "
+                + "\"message\": \"username ou password inválidos\", "
                 + "\"path\": \"/login\"}";
         }
     }
