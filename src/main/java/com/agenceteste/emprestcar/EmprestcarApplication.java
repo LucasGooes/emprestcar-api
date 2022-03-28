@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.agenceteste.emprestcar.domain.Carro;
 import com.agenceteste.emprestcar.domain.Funcionario;
 import com.agenceteste.emprestcar.domain.StatusCarro;
+import com.agenceteste.emprestcar.domain.User;
 import com.agenceteste.emprestcar.domain.Viagem;
 import com.agenceteste.emprestcar.repository.CarroRepository;
 import com.agenceteste.emprestcar.repository.FuncionarioRepository;
+import com.agenceteste.emprestcar.repository.UserRepository;
 import com.agenceteste.emprestcar.repository.ViagemRepository;
 
 @SpringBootApplication
@@ -28,6 +31,12 @@ public class EmprestcarApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ViagemRepository viagemRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EmprestcarApplication.class, args);
@@ -52,9 +61,13 @@ public class EmprestcarApplication implements CommandLineRunner {
 		Viagem viagem2 = new Viagem(null, func2, carro2);
 		carro2.setStatus(StatusCarro.EM_USO);
 		
+		User user = new User("lucas", pe.encode("123"));
+		User user2 = new User("maria", pe.encode("456"));
+		
 		carroRepository.saveAll(Arrays.asList(carro, carro2, carro3));
 		funcionarioRepository.saveAll(Arrays.asList(func, func2, func3, func4, func5));		
 		viagemRepository.saveAll(Arrays.asList(viagem, viagem2));
+		userRepository.saveAll(Arrays.asList(user, user2));
 	}
 
 }

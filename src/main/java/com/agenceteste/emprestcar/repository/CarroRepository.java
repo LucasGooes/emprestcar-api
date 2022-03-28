@@ -10,7 +10,6 @@ import com.agenceteste.emprestcar.domain.Carro;
 @Repository
 public interface CarroRepository extends JpaRepository<Carro, Integer> {
 	
-	
 	public List<Carro> findByStatus(int status);
 	
 
