@@ -8,8 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.agenceteste.emprestcar.domain.User;
-import com.agenceteste.emprestcar.repository.UserRepository;
+import com.agenceteste.emprestcar.old.domain.User;
+import com.agenceteste.emprestcar.old.repository.UserRepository;
 
 @SpringBootApplication
 public class EmprestcarApplication implements CommandLineRunner {
