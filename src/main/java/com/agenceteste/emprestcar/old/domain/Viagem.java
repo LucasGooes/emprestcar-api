@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
+
 @Entity
 public class Viagem {
 	
@@ -22,20 +24,20 @@ public class Viagem {
 	@ManyToOne
 	@JoinColumn
 	private Funcionario funcionario;
-	
+	/*
 	@ManyToOne
 	@JoinColumn
-	private Carro carro;
-	
+	private CarroEntityJPA carro;
+	*/
 	protected Viagem() {
 	}
 	
-	public Viagem(Integer id, Funcionario funcionario, Carro carro) {
+	public Viagem(Integer id, Funcionario funcionario/*, CarroEntityJPA carro*/) {
 		this.id = id;
 		this.dataRetirada = LocalDate.now();
 		this.dataEntrega = null;
 		this.funcionario = funcionario;
-		this.carro = carro;
+		//this.carro = carro;
 		this.status = StatusViagem.EM_CURSO.getCod();
 	}
 	
@@ -45,9 +47,11 @@ public class Viagem {
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
-	public Carro getCarro() {
+/*
+	public CarroEntityJPA getCarro() {
 		return carro;
 	}
+	*/
 	public LocalDate getDataRetirada() {
 		return dataRetirada;
 	}

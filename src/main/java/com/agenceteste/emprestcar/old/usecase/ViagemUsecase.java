@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agenceteste.emprestcar.old.domain.Carro;
+import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
 import com.agenceteste.emprestcar.old.domain.Funcionario;
 import com.agenceteste.emprestcar.old.domain.StatusCarro;
 import com.agenceteste.emprestcar.old.domain.StatusViagem;
@@ -16,7 +16,7 @@ import com.agenceteste.emprestcar.old.usecase.exceptions.BusinessException;
 
 @Service
 public class ViagemUsecase {
-
+/*
 	@Autowired
 	private ViagemRepository viagemRepository;
 
@@ -34,7 +34,7 @@ public class ViagemUsecase {
 	}
 
 	public Viagem realizarRetirada(Integer idFuncionario, Integer idCarro) {
-		Carro carro = carroUsecase.buscarPorId(idCarro);
+		CarroEntity carro = carroUsecase.buscarPorId(idCarro);
 		if (!carro.getStatus().equals(StatusCarro.LIBERADO)) {
 			throw new BusinessException("Este carro não esta liberado para uso! Id: "+idCarro);
 		}
@@ -53,10 +53,10 @@ public class ViagemUsecase {
 		viagem.setDataEntrega(LocalDate.now());
 		viagem.setStatus(StatusViagem.CONCLUIDA);
 		viagemRepository.save(viagem);
-		Carro carro = carroUsecase.buscarPorId(idCarro);
+		CarroEntity carro = carroUsecase.buscarPorId(idCarro);
 		carroUsecase.atualizarStatus(carro, StatusCarro.LIBERADO);
 	}
 	
 	
-
+*/
 }

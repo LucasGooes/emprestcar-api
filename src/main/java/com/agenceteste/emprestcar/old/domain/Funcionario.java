@@ -20,7 +20,7 @@ public class Funcionario {
 	private String nome;
 	private Integer matricula;
 	
-	@OneToMany(mappedBy = "carro")
+	@OneToMany(mappedBy = "funcionario")
 	private List<Viagem> viagens = new ArrayList<>();
 	
 	protected Funcionario() {

@@ -7,7 +7,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.agenceteste.emprestcar.old.domain.Carro;
+import com.agenceteste.emprestcar.dominio.frota.Carro;
+import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
 
 public class CarroDTO {
 	
@@ -17,8 +18,8 @@ public class CarroDTO {
 	@NotEmpty
 	private String marca;
 	@NotNull
-	@Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
-	private String dataFabricacao;
+	//@Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
+	private LocalDate dataFabricacao;
 	
 	public CarroDTO() {
 	}
@@ -31,12 +32,12 @@ public class CarroDTO {
 		return marca;
 	}
 
-	public String getDataFabricacao() {
+	public LocalDate getDataFabricacao() {
 		return dataFabricacao;
 	}
 	
 	public Carro toCarro() {
-		return new Carro(null, this.getModelo(), this.getMarca(), LocalDate.parse(this.getDataFabricacao(), formato));
+		return new Carro(modelo, marca, dataFabricacao, 0L);
 	}
 	
 }

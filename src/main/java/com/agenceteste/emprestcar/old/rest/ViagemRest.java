@@ -17,7 +17,7 @@ import com.agenceteste.emprestcar.old.usecase.ViagemUsecase;
 @RestController
 @RequestMapping(value = "/api/v1/viagem")
 public class ViagemRest {
-	
+	/*
 	@Autowired
 	private ViagemUsecase viagemUsecase;
 	
@@ -39,5 +39,5 @@ public class ViagemRest {
 		viagemUsecase.realizarDevolucao(idFuncionario, idCarro);
 		return ResponseEntity.ok().build();
 	}
-	
+	*/
 }
