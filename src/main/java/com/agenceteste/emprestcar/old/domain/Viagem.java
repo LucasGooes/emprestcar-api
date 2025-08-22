@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
+import com.agenceteste.emprestcar.infra.frota.persistence.entity.CarroEntityJPA;
 
 @Entity
 public class Viagem {

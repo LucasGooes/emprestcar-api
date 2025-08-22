@@ -1,13 +1,11 @@
-package com.agenceteste.emprestcar.aplicacao.frota;
+package com.agenceteste.emprestcar.aplicacao.frota.service;
 
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.stereotype.Service;
-
 import com.agenceteste.emprestcar.dominio.frota.Carro;
+import com.agenceteste.emprestcar.dominio.frota.repository.CarroRepository;
 
-@Service
 public class CarroService {
 	
 	private CarroRepository repository;

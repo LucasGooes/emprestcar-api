@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
+import com.agenceteste.emprestcar.infra.frota.persistence.entity.CarroEntityJPA;
 import com.agenceteste.emprestcar.old.domain.Funcionario;
 import com.agenceteste.emprestcar.old.domain.StatusCarro;
 import com.agenceteste.emprestcar.old.domain.StatusViagem;

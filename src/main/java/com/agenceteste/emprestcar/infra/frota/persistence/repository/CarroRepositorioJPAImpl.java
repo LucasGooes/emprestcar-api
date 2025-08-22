@@ -1,4 +1,4 @@
-package com.agenceteste.emprestcar.infra.frota;
+package com.agenceteste.emprestcar.infra.frota.persistence.repository;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,8 +6,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.agenceteste.emprestcar.aplicacao.frota.CarroRepository;
 import com.agenceteste.emprestcar.dominio.frota.Carro;
+import com.agenceteste.emprestcar.dominio.frota.repository.CarroRepository;
+import com.agenceteste.emprestcar.infra.frota.persistence.mapper.CarroMapperJPA;
 
 @Repository
 public class CarroRepositorioJPAImpl implements CarroRepository {

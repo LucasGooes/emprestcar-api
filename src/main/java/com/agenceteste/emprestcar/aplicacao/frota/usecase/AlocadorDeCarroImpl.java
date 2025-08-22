@@ -1,4 +1,4 @@
-package com.agenceteste.emprestcar.aplicacao.frota;
+package com.agenceteste.emprestcar.aplicacao.frota.usecase;
 
 import com.agenceteste.emprestcar.dominio.frota.Carro;
 import com.agenceteste.emprestcar.dominio.frota.StatusCarro;

@@ -1,4 +1,4 @@
-package com.agenceteste.emprestcar.aplicacao.frota;
+package com.agenceteste.emprestcar.dominio.frota.repository;
 
 import java.util.List;
 import java.util.UUID;

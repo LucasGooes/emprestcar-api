@@ -1,8 +1,9 @@
-package com.agenceteste.emprestcar.infra.frota;
+package com.agenceteste.emprestcar.infra.frota.persistence.mapper;
 
 import org.springframework.stereotype.Component;
 
 import com.agenceteste.emprestcar.dominio.frota.Carro;
+import com.agenceteste.emprestcar.infra.frota.persistence.entity.CarroEntityJPA;
 
 @Component
 public class CarroMapperJPA {

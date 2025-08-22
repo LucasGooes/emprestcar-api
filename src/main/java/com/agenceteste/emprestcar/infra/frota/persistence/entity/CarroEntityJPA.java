@@ -1,4 +1,4 @@
-package com.agenceteste.emprestcar.infra.frota;
+package com.agenceteste.emprestcar.infra.frota.persistence.entity;
 
 import java.math.BigInteger;
 import java.time.LocalDate;

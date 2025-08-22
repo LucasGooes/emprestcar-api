@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.agenceteste.emprestcar.dominio.frota.Carro;
-import com.agenceteste.emprestcar.infra.frota.CarroEntityJPA;
+import com.agenceteste.emprestcar.infra.frota.persistence.entity.CarroEntityJPA;
 
 public class CarroDTO {
 	
